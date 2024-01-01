@@ -79,7 +79,7 @@ jobs:
           pipenv --python ${{ steps.setup-python.outputs.python-version }} run mkdocs build --config-file ./mkdocs.yml
       -
         name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: documentation
           path: site/
@@ -166,7 +166,7 @@ jobs:
       -
         name: Upload coverage
         if: ${{ matrix.python-version == env.DEFAULT_PYTHON_VERSION }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: backend-coverage-report
           path: src/coverage.xml
@@ -249,7 +249,7 @@ jobs:
       -
         name: Upload Jest coverage
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jest-coverage-report-${{ matrix.shard-index }}
           path: |
@@ -264,7 +264,7 @@ jobs:
       -
         name: Upload Playwright test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: src-ui/playwright-report
@@ -427,7 +427,7 @@ jobs:
           docker cp frontend-extract:/usr/src/paperless/src/documents/static/frontend src/documents/static/frontend/
       -
         name: Upload frontend artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: frontend-compiled
           path: src/documents/static/frontend/
@@ -543,7 +543,7 @@ jobs:
           tar -cJf paperless-ngx.tar.xz paperless-ngx/
       -
         name: Upload release artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release
           path: dist/paperless-ngx.tar.xz
